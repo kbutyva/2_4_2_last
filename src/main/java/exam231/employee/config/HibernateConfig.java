@@ -22,33 +22,29 @@ import java.util.Properties;
 @PropertySource(value = "classpath:db.properties")
 public class HibernateConfig {
 
-    private Environment environment;
-
     @Autowired
-    public void setEnvironment(Environment environment) {
-        this.environment = environment;
-    }
+    private Environment env;
 
     private Properties hibernateProperties() {
         Properties properties = new Properties();
-        properties.put("hibernate.dialect", environment.getRequiredProperty("hibernate.dialect"));
-        properties.put("hibernate.show_sql", environment.getRequiredProperty("hibernate.show_sql"));
+        properties.put("hibernate.dialect", env.getRequiredProperty("hibernate.dialect"));
+        properties.put("hibernate.show_sql", env.getRequiredProperty("hibernate.show_sql"));
         return properties;
     }
 
     @Bean
     public DataSource dataSource() {
         BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setDriverClassName(environment.getRequiredProperty("jdbc.driverClassName"));
-        dataSource.setUrl(environment.getRequiredProperty("jdbc.url"));
-        dataSource.setUsername(environment.getRequiredProperty("jdbc.username"));
-        dataSource.setPassword(environment.getRequiredProperty("jdbc.password"));
+        dataSource.setDriverClassName(env.getRequiredProperty("jdbc.driverClassName"));
+        dataSource.setUrl(env.getRequiredProperty("jdbc.url"));
+        dataSource.setUsername(env.getRequiredProperty("jdbc.username"));
+        dataSource.setPassword(env.getRequiredProperty("jdbc.password"));
 
         return dataSource;
     }
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(){
+    public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean(){
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSource());
         entityManagerFactoryBean.setPackagesToScan("exam231.employee.model");
@@ -61,7 +57,7 @@ public class HibernateConfig {
     @Bean
     public PlatformTransactionManager transactionManager() {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
-        transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
+        transactionManager.setEntityManagerFactory(entityManagerFactoryBean().getObject());
             return transactionManager;
     }
 }

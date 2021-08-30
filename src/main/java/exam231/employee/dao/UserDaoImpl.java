@@ -2,13 +2,14 @@ package exam231.employee.dao;
 
 import exam231.employee.model.User;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
-@Component
+@Repository
 @Transactional
 public class UserDaoImpl implements UserDao {
 
