@@ -38,7 +38,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public ModelAndView editUser(@ModelAttribute("film") User user) {
+    public ModelAndView editUser(@ModelAttribute("user") User user) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/");
         userService.editUser(user);
