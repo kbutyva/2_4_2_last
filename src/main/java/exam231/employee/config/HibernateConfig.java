@@ -30,6 +30,7 @@ public class HibernateConfig {
         properties.put("hibernate.dialect", env.getRequiredProperty("hibernate.dialect"));
         properties.put("hibernate.show_sql", env.getRequiredProperty("hibernate.show_sql"));
         return properties;
+
     }
 
     @Bean
