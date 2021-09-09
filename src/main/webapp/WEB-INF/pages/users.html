@@ -9,6 +9,7 @@
 <table>
     <tr>
         <th>id</th>
+        <th>username</th>
         <th>name</th>
         <th>surname</th>
         <th>salary</th>
@@ -17,14 +18,15 @@
     </tr>
     <tr th:each="user : ${usersList}">
         <td th:align="center" th:utext="${user.getId()}">id</td>
-        <td><a th:href="@{/users/{id}(id=${user.getId()})}" th:utext="${user.getName()}"></a></td>
-        <td><a th:href="@{/users/{id}(id=${user.getId()})}" th:utext="${user.getSurname()}"></a></td>
+        <td><a th:href="@{/admin/{id}(id=${user.getId()})}" th:utext="${user.getUsername()}"></a></td>
+        <td><a th:href="@{/admin/{id}(id=${user.getId()})}" th:utext="${user.getName()}"></a></td>
+        <td><a th:href="@{/admin/{id}(id=${user.getId()})}" th:utext="${user.getSurname()}"></a></td>
         <td th:utext="${user.getSalary()}">Salary</td>
         <td>
-            <form th:method="GET" th:action="@{/users/{id}/edit(id=${user.id})}">
+            <form th:method="GET" th:action="@{/admin/edit/{id}(id=${user.getId()})}">
                 <input type="submit" value="Edit"/>
             </form>
-            <form th:method="DELETE" th:action="@{/users/{id} (id=${user.id})}">
+            <form th:method="POST" th:action="@{/admin/delete/{id}(id=${user.getId()})}">
                 <input type="submit" value="Delete"/>
             </form>
 
@@ -34,6 +36,6 @@
 </table>
 <br>
 <input type="button" value="Add new user"
-       onclick="window.location.href = '/users/add'">
+       onclick="window.location.href = '/admin/add'">
 </body>
 </html>
