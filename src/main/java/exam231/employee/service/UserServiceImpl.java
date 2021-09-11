@@ -16,9 +16,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private EntityManager entityManager;
-
     @Override
     public List<User> allUsers() {
         return userRepository.findAll();
@@ -36,14 +33,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void editUser(User user) {
-        entityManager.merge(user);
+        userRepository.save(user);
     }
 
     @Override
     public User getById(int id) {
-        TypedQuery<User> query = entityManager.createQuery("select u from User u where u.id = :id", User.class);
-        query.setParameter("id", id);
-        return query.getSingleResult();
+
+        return userRepository.findUserById(id);
     }
 
     @Override
