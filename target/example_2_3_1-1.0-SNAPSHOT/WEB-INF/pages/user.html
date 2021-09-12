@@ -15,9 +15,9 @@
     </tr>
     <tr th:object="${user}">
         <td th:align="center" th:utext="${user.getId()}">id</td>
-        <td><a th:href="@{/user/{id}(id=${user.getId()})}" th:utext="${user.getUsername()}"></a></td>
-        <td><a th:href="@{/user/{id}(id=${user.getId()})}" th:utext="${user.getName()}"></a></td>
-        <td><a th:href="@{/user/{id}(id=${user.getId()})}" th:utext="${user.getSurname()}"></a></td>
+        <td><a th:utext="${user.getUsername()}"></a></td>
+        <td><a th:utext="${user.getName()}"></a></td>
+        <td><a th:utext="${user.getSurname()}"></a></td>
         <td th:utext="${user.getSalary()}">Salary</td>
 
     </tr>
