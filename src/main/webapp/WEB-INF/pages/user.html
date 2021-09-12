@@ -12,13 +12,16 @@
         <th>name</th>
         <th>surname</th>
         <th>salary</th>
+        <th>role</th>
+
     </tr>
     <tr th:object="${user}">
-        <td th:align="center" th:utext="${user.getId()}">id</td>
-        <td><a th:utext="${user.getUsername()}"></a></td>
-        <td><a th:utext="${user.getName()}"></a></td>
-        <td><a th:utext="${user.getSurname()}"></a></td>
-        <td th:utext="${user.getSalary()}">Salary</td>
+        <td th:align="center" th:utext="${user.getId()}"></td>
+        <td th:align="center" th:utext="${user.getUsername()}"></td>
+        <td th:align="center" th:utext="${user.getName()}"></td>
+        <td th:align="center" th:utext="${user.getSurname()}"></td>
+        <td th:align="center" th:utext="${user.getSalary()}"></td>
+        <td th:align="center" th:utext="${user.getRoles()}"></td>
 
     </tr>
 </table>

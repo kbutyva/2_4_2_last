@@ -14,14 +14,16 @@
         <th>surname</th>
         <th>salary</th>
 
+
         <th>action</th>
     </tr>
     <tr th:each="user : ${usersList}">
-        <td th:align="center" th:utext="${user.getId()}">id</td>
-        <td><a th:href="@{/admin/{id}(id=${user.getId()})}" th:utext="${user.getUsername()}"></a></td>
-        <td><a th:href="@{/admin/{id}(id=${user.getId()})}" th:utext="${user.getName()}"></a></td>
-        <td><a th:href="@{/admin/{id}(id=${user.getId()})}" th:utext="${user.getSurname()}"></a></td>
-        <td th:utext="${user.getSalary()}">Salary</td>
+        <td th:align="center" th:utext="${user.getId()}"></td>
+        <td th:align="center" th:utext="${user.getUsername()}"></td>
+        <td th:align="center" th:utext="${user.getName()}"></td>
+        <td th:align="center" th:utext="${user.getSurname()}"></td>
+        <td th:align="center" th:utext="${user.getSalary()}"></td>
+
         <td>
             <form th:method="GET" th:action="@{/admin/edit/{id}(id=${user.getId()})}">
                 <input type="submit" value="Edit"/>
