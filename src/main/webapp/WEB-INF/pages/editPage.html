@@ -7,7 +7,7 @@
 <body>
 <h2>Edit user</h2>
 <hr>
-<form th:method="POST" th:action="@{/admin/{id}(id=${user.id})}" th:object="${user}">
+<form th:method="POST" th:action="@{/admin/(id=${user.id})}" th:object="${user}">
     label for="surname">Username: </label>
     <input type="text" th:field="*{username}" id="username">
     <br>

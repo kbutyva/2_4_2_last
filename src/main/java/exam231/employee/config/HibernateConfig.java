@@ -27,11 +27,11 @@ public class HibernateConfig {
     @Autowired
     private Environment env;
 
-    private Properties hibernateProperties() {
+    private Properties properties() {
         Properties properties = new Properties();
         properties.put("hibernate.dialect", env.getRequiredProperty("hibernate.dialect"));
         properties.put("hibernate.show_sql", env.getRequiredProperty("hibernate.show_sql"));
-
+        properties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
         return properties;
     }
 
@@ -52,7 +52,7 @@ public class HibernateConfig {
         entityManagerFactoryBean.setDataSource(dataSource());
         entityManagerFactoryBean.setPackagesToScan("exam231.employee.model");
         entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-        entityManagerFactoryBean.setJpaProperties(hibernateProperties());
+        entityManagerFactoryBean.setJpaProperties(properties());
         return entityManagerFactoryBean;
 
     }
