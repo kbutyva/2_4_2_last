@@ -1,5 +1,6 @@
 package exam231.employee.controller;
 
+import exam231.employee.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,7 +37,9 @@ public class UserController {
     @GetMapping("admin")
     public String allUsers(Model model) {
         List<User> users = userService.allUsers();
+        List<Role> roles = userService.allRoles();
         model.addAttribute("usersList", users);
+        model.addAttribute("roles", roles);
         return "users";
     }
 

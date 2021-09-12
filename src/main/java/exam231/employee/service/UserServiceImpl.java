@@ -1,5 +1,7 @@
 package exam231.employee.service;
 
+import exam231.employee.model.Role;
+import exam231.employee.repository.RoleRepository;
 import exam231.employee.repository.UserRepository;
 import exam231.employee.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
 
     @Override
     public List<User> allUsers() {
@@ -45,6 +50,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
+    }
+
+    @Override
+    public List<Role> allRoles() {
+        return roleRepository.findAll();
     }
 
 
