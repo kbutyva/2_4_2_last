@@ -1,4 +1,4 @@
-package exam231.employee.config;
+package exam231.employee.config.security;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 

@@ -1,6 +1,5 @@
-package exam231.employee.config.handler;
+package exam231.employee.config.security.handler;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;

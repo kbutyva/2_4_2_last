@@ -23,7 +23,7 @@
         <td th:align="center" th:utext="${user.getName()}"></td>
         <td th:align="center" th:utext="${user.getSurname()}"></td>
         <td th:align="center" th:utext="${user.getSalary()}"></td>
-        <td><p th:each="role : ${user.getRoles()}" th:text="${role.getName()}"></p></td>
+        <td><p th:each="role : ${user.getRoles()}" th:text="${role.getRole()}"></p></td>
 
         <td>
             <form th:method="GET" th:action="@{/admin/edit/{id}(id=${user.getId()})}">
