@@ -1,21 +1,23 @@
 package exam231.employee.controller;
 
-import exam231.employee.model.Role;
+import exam231.employee.model.User;
+import exam231.employee.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import exam231.employee.model.User;
-import exam231.employee.service.UserService;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.security.Principal;
-import java.util.List;
 
 @Controller
 public class UserController {
+    private final UserService userService;
 
-    @Autowired
-    private UserService userService;
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping("/")
     public String index() {
@@ -34,43 +36,4 @@ public class UserController {
         return "user";
     }
 
-    @GetMapping("admin")
-    public String allUsers(Model model) {
-        List<User> users = userService.allUsers();
-        List<Role> roles = userService.allRoles();
-        model.addAttribute("usersList", users);
-        model.addAttribute("roles", roles);
-        return "users";
-    }
-
-    @GetMapping("admin/add")
-    public String createUser(Model model) {
-        model.addAttribute("user", new User());
-        return "createUser";
-    }
-
-    @PostMapping("admin")
-    public String addUser(@ModelAttribute("user") User user) {
-        userService.addUser(user);
-        return "redirect:/admin";
-    }
-
-    @GetMapping("admin/edit/{id}")
-    public String editPage(Model model, @PathVariable("id") int id) {
-        User user = userService.getById(id);
-        model.addAttribute("user", user);
-        return "editPage";
-    }
-
-    @PostMapping("admin/")
-    public String editUser(@ModelAttribute("user") User user) {
-        userService.editUser(user);
-        return "redirect:/admin";
-    }
-
-    @PostMapping("admin/delete/{id}")
-    public String deleteUser(@PathVariable("id") int id) {
-        userService.removeUser(id);
-        return "redirect:/admin";
-    }
 }
