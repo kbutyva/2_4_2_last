@@ -9,7 +9,9 @@ import exam231.employee.model.User;
 import exam231.employee.service.UserService;
 
 import java.security.Principal;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/admin")
@@ -33,11 +35,21 @@ public class AdminController {
     @GetMapping("/add")
     public String createUser(Model model) {
         model.addAttribute("user", new User());
+        model.addAttribute("roleAdmin", null);
         return "createUser";
     }
 
     @PostMapping
-    public String addUser(@ModelAttribute("user") User user) {
+    public String addUser(@ModelAttribute(value = "roleAdmin") String roleAdmin,
+                          @ModelAttribute("user") User user) {
+        Set<Role> setRole = new HashSet<>();
+        if (roleAdmin.contains("on")) {
+            setRole.add(userService.allRoles().get(1));
+            setRole.add(userService.allRoles().get(0));
+        } else {
+            setRole.add(userService.allRoles().get(1));
+        }
+        user.setRoles(setRole);
         userService.addUser(user);
         return "redirect:/admin";
     }

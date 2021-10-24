@@ -28,6 +28,11 @@
     <input type="text" th:field="*{salary}" id="salary">
     <br>
     <br>
+    <div><label for="roleAdmin" th:text="ROLE_ADMIN"></label>
+        <input type="checkbox" name="roleAdmin" id="roleAdmin" th:checked="${roleAdmin}"/>
+    </div>
+    <br>
+    <br>
     <input type="submit" value="Create"/>
 </form>
 </body>
